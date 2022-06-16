@@ -1,0 +1,5 @@
+name: EntityMerger
+version: '${project.version}'
+main: de.perry.entitymerger.EntityMerger
+api-version: 1.17
+authors: [ Perry ]
