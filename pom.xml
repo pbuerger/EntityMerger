@@ -6,7 +6,7 @@
 
     <groupId>de.perry</groupId>
     <artifactId>EntityMerger</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <name>EntityMerger</name>

@@ -7,12 +7,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class EntityMerger extends JavaPlugin {
 
     public static CommandManager commandManager;
+    private static EntityMerger plugin;
+
     @Override
     public void onEnable() {
         commandManager = new CommandManager(this);
         registerCommands();
         new SkeletonJockeyMerger().runTaskTimer(this, 20L, 5L);
         new CreeperJockeyMerger().runTaskTimer(this, 20L, 5L);
+
+        plugin = this;
     }
 
     private void registerCommands(){
@@ -31,4 +35,9 @@ public final class EntityMerger extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
     }
+
+    public static EntityMerger getPlugin() {
+        return plugin;
+    }
+
 }

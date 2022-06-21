@@ -1,11 +1,12 @@
 package de.perry.entitymerger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Spider;
 import org.bukkit.entity.Zombie;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
@@ -27,8 +28,10 @@ public class CreeperJockeyMerger extends BukkitRunnable {
                         continue;
                     if (nearbyEntity.getPassengers().size()>0)
                         continue;
-                    if (!rapidhoppingcreeper && nearbyEntity.getNearbyEntities(1,1,1).stream().anyMatch(e->e.getPassengers().stream().anyMatch(p->p.getUniqueId().equals(nearbyEntity.getUniqueId()))))
-                        continue;
+                    if (nearbyEntity.getPersistentDataContainer().has(new NamespacedKey(EntityMerger.getPlugin(), "isJockey"), PersistentDataType.BYTE)){
+                        if (!rapidhoppingcreeper && nearbyEntity.getPersistentDataContainer().get(new NamespacedKey(EntityMerger.getPlugin(), "isJockey"), PersistentDataType.BYTE) == 1)
+                            continue;
+                    }
                     if (nearbyEntity.getLocation().distance(zombie.getLocation())>distance)
                         continue;
 
