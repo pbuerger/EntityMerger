@@ -28,6 +28,9 @@ public class CreeperJockeyMerger extends BukkitRunnable {
                         continue;
                     if (nearbyEntity.getPassengers().size()>0)
                         continue;
+                    if (!nearbyEntity.getNearbyEntities(1,1,1).stream().anyMatch(e -> e.getPassengers().stream().anyMatch(p -> p.getUniqueId().equals(nearbyEntity.getUniqueId())))){
+                        nearbyEntity.getPersistentDataContainer().set(new NamespacedKey(EntityMerger.getPlugin(), "isJockey"), PersistentDataType.BYTE, (byte) 0);
+                    }
                     if (nearbyEntity.getPersistentDataContainer().has(new NamespacedKey(EntityMerger.getPlugin(), "isJockey"), PersistentDataType.BYTE)){
                         if (!rapidhoppingcreeper && nearbyEntity.getPersistentDataContainer().get(new NamespacedKey(EntityMerger.getPlugin(), "isJockey"), PersistentDataType.BYTE) == 1)
                             continue;
